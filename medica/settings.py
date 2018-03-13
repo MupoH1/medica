@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'faq',
     'appointment',
     'index',
+    'employee',
     'document',
 ]
 
@@ -86,8 +87,11 @@ WSGI_APPLICATION = 'medica.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'medica',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
     }
 }
 
@@ -145,13 +149,29 @@ CKEDITOR_BROWSE_SHOW_DIRS = True
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': [['Source', 'Link', 'Unlink', 'SpecialChar', 'Image', 'CodeSnippet', 'Bold', 'Italic',
-                     'Underline', 'Styles', 'Format', 'NumberedList', 'BulletedList', 'Outdent', 'Indent']],
-        'height': 250,
-        'width': 900,
-        'removePlugins': 'stylesheetparser',
-        'extraPlugins': 'codesnippet',
-    },
+        'toolbar': [
+            ['Undo', 'Redo',
+             '-', 'Bold', 'Italic', 'Underline',
+             '-', 'Link', 'Unlink', 'Anchor',
+             '-', 'Format',
+             '-', 'Maximize',
+             '-', 'Table',
+             '-', 'Image',
+             '-', 'Source',
+             '-', 'NumberedList', 'BulletedList'
+            ],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
+             '-', 'Font', 'FontSize', 'TextColor',
+             '-', 'Outdent', 'Indent',
+             '-', 'HorizontalRule',
+             '-', 'Blockquote'
+            ]
+        ],
+        'height': 500,
+        'width': '100%',
+        'toolbarCanCollapse': False,
+        'forcePasteAsPlainText': True
+    }
 }
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True

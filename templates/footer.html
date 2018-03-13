@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+{% load static %}
+<footer class="footer">
+      <div class="wrapper">
+        <div class="clr">
+          <div class="footer-left">
+            <div class="logotype">
+              <a href="/" title="Многопрофильная клиника MEDICA в Пскове">
+                <span><img src="{% static 'images/logotype-white.png' %}" alt="Многопрофильная клиника MEDICA в Пскове"></span>
+              </a>
+            </div>
+
+            <address>г. Псков, ул. <br> Бастионная, д. 9</address>
+
+            <div class="phone">
+              <a href="tel:88112440303">8 (8112) 44-03-03</a>
+            </div>
+
+            <ul class="social">
+              <li>
+                <a href="#0" target="_blank"><img src="{% static 'images/vk-icon.png' %}" alt="VK.com"></a>
+              </li>
+              <li>
+                <a href="#0" target="_blank"><img src="{% static 'images/fb-icon.png' %}" alt="Facebook"></a>
+              </li>
+              <li>
+                <a href="#0" target="_blank"><img src="{% static 'images/gp-icon.png' %}" alt="Google+"></a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-right">
+            <div class="footer-links">
+              <div class="clr">
+                <ul class="left">
+                  <li><a href="{% url 'doctors' %}">Врачи</a></li>
+                  <li><a href="{% url 'news' %}">Медицинские программы</a></li>
+                  <li><a href="{% url 'contacts' %}">Контакты</a></li>
+                </ul>
+
+                <ul class="center">
+                  <li>
+                    <a href="{% url 'services' %}">Услуги клиники</a>
+
+                    <div class="row clr">
+                        {% load chunkify %}
+                        {% with departments|chunk_list as chunks %}
+                        {% for chunk in chunks %}
+                      <ul>
+
+                          {% for item in chunk %}
+                        <li><a href="{% url 'department' item.id %}">{{ item.short_name }}</a></li>
+                          {% endfor %}
+                      </ul>
+                        {% endfor %}
+                    {% endwith %}
+                    </div>
+                  </li>
+                </ul>
+
+                <ul class="right">
+                  <li>
+                    <a href="#0">Для посетителей</a>
+
+                    <div class="row clr">
+                      <ul>
+                        <li><a href="#0">О клинике</a></li>
+                        <li><a href="#0">Прайс-лист</a></li>
+                        <li><a href="{% url 'documents' %}">Документы</a></li>
+                        <li><a href="{% url 'reviews' %}">Отзывы</a></li>
+                        <li><a href="#0">Фотогалерея</a></li>
+                        <li><a href="{% url 'faq' %}">Вопрос-ответ</a></li>
+                        <li><a href="{% url 'news' %}">Новости</a></li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-line">
+        <div class="wrapper">
+          <div class="clr">
+            <div class="copyright">&copy; Medica. All rights resevered</div>
+
+            <div class="coffee">
+              <a href="https://www.coffeestudio.ru/" target="_blank">Сделано в интернет-агенстве <span>Coffee Studio</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>

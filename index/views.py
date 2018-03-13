@@ -2,19 +2,26 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 
+from appointment.forms import AppointmentForm
 from department.models import Department
 from doctor_card.models import Doctor
-from index.models import Slide
+# from index.models import Slide
 from news.models import News
 
 
 def index(request):
 
+    appointment_form = AppointmentForm(request.POST or None)
+
+    if request.method == 'POST' and appointment_form.is_valid():
+        appointment_form.save()
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
     doctors_set = Doctor.objects.order_by('?')[:6]
     department_set = Department.objects.filter(is_index_active=True)
-    news_set = News.objects.all().order_by('?')[:3]
+    news_set = News.objects.filter(is_main=True).order_by('-interest', '?')[:3]
 
-    slides = Slide.objects.all()
+    slides = News.objects.filter(is_slide=True).order_by('-interest')
 
     doctors = []
     doctors_pair = []

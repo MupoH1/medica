@@ -15,7 +15,7 @@ def doctors(request):
 
 def doctor_card(request, doctor_id):
     doctor = Doctor.objects.get(id=doctor_id)
-    reviews_set = doctor.review_set.all().order_by('date')
+    reviews_set = doctor.review_set.filter(is_active=True).order_by('date')
 
     paginator = Paginator(reviews_set, 4)
     page = request.GET.get('page')

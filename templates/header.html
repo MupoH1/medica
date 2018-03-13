@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+{% load static %}
+<header class="header">
+        <div class="wrapper">
+          <div class="clr">
+            <div class="logotype">
+              <a href="/" title="Многопрофильная клиника MEDICA в Пскове">
+                <span><img src="{% static 'images/logotype.png' %}" alt="Многопрофильная клиника MEDICA в Пскове"></span>
+                <span>Многопрофильная клиника <b>MEDICA</b> в Пскове</span>
+              </a>
+            </div>
+
+            <div class="header-contacts">
+              <ul>
+                <li class="address">г. Псков, ул. <br> Бастионная, д. 9</li>
+                <li class="work-time">
+                  <p>Пн - Пт: с 8:00 до 20:00</p>
+                  <p>Сб: с 8:00 до 18:00</p>
+                </li>
+                <li class="phone">
+                  <a href="tel:8 (8112) 44-03-03">8 (8112) 44-03-03</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="get-call">
+              <a href="#get-call" class="btn" data-modal><span>Записаться на прием</span></a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div id="get-call" class="modal modal-md mfp-hide">
+        <div class="modal-content">
+          <div class="block-heading">
+            <h2>Запись на прием</h2>
+
+            <div class="block-heading-text">
+              <p>Поля отмеченные <sup>*</sup> - обязательны для заполнения</p>
+            </div>
+          </div>
+
+          <div class="modal-body">
+            <form action="" method="post">{% csrf_token %}
+              <label for="id_full_name">
+          <span>Представьтесь, пожалуйста, (полностью ФИО) <sup>*</sup></span>
+          <input name="full_name" id="id_full_name" required type="text" maxlength="64">
+        </label>
+              <label for="id_phone_number">
+          <span>Контактный телефон <sup>*</sup></span>
+          <input name="phone_number" id="id_phone_number" required="" type="text" maxlength="90">
+        </label>
+              <label for="id_email">
+          <span>E-mail</span>
+          <input name="email" id="id_email" type="email" maxlength="64">
+        </label>
+              <label for="id_comment">
+          <span>Комментарий</span>
+          <textarea name="comment" id="id_comment" rows="10" cols="40"></textarea>
+        </label>
+
+              <p class="help-text">Проверьте, пожалуйста, указанные Вами номер телефона и адрес электронной почты. Если они были указаны неверно, мы не можем гарантировать обратную связь.</p>
+
+              <label class="rules">
+          <input type="checkbox" required>
+          <div class="checkbox">
+            <span>Я согласен с <a href="#0">правилами сайта</a></span>
+            <p>отправляя форму, я соглашаюсь на обработку моих персональных данных в соответствии c <a href="https://www.consultant.ru/document/cons_doc_LAW_61801/" target="_blank">Федеральным законом от 27 июля 2006 г. №152-ФЗ «О персональных данных»</a></p>
+          </div>
+        </label>
+
+              <button type="submit" class="btn"><span>Отправить</span></button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+
+      <nav class="nav" role="navigation">
+        <div class="wrapper">
+          <ul>
+            <li><a href="/">Главная</a></li>
+            <li class="divider"></li>
+            <li><a href="{% url 'news' %}">Медицинские программы</a></li>
+            <li class="divider"></li>
+            <li><a href="{% url 'services' %}">Услуги клиники</a></li>
+            <li class="divider"></li>
+            <li><a href="{% url 'doctors' %}">Врачи</a></li>
+            <li class="divider"></li>
+            <li><a href="#0">Прайс-лист</a></li>
+            <li class="divider"></li>
+            <li><a href="#0">Для посетителей</a></li>
+            <li class="divider"></li>
+            <li><a href="{% url 'contacts' %}">Контакты</a></li>
+          </ul>
+        </div>
+      </nav>

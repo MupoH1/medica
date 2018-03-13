@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^', include('faq.urls')),
     url(r'^', include('index.urls')),
     url(r'^', include('document.urls')),
+    url(r'^', include('employee.urls')),
 ] \
               + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
               + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

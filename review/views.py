@@ -9,10 +9,11 @@ from .models import *
 
 
 def reviews(request):
-    reviews_set = Review.objects.all().order_by('date')
+    reviews_set = Review.objects.filter(is_active=True).order_by('date')
 
     appointment_form = AppointmentForm(request.POST or None)
     review_form = ReviewForm(request.POST or None)
+
     if request.method == 'POST' and review_form.is_valid():
         review_form.save()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

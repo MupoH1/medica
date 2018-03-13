@@ -8,14 +8,10 @@ class NewsImageInline(admin.TabularInline):
     extra = 1
 
 
-class NewsTextFieldInline(admin.TabularInline):
-    model = NewsTextField
-    extra = 0
-
-
 class NewsAdmin(admin.ModelAdmin):
     list_display = [field.name for field in News._meta.fields]
-    inlines = [NewsTextFieldInline, NewsImageInline]
+    list_editable = ['interest', 'is_main', 'is_slide']
+    inlines = [NewsImageInline]
 
     class Meta:
         model = News

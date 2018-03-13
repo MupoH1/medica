@@ -28,4 +28,5 @@ class DoctorAdmin(admin.ModelAdmin):
     class Meta:
         model = Doctor
 
+
 admin.site.register(Doctor, DoctorAdmin)
