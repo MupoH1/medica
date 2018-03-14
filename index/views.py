@@ -4,7 +4,7 @@ from django.shortcuts import render
 
 from appointment.forms import AppointmentForm
 from department.models import Department
-from doctor_card.models import Doctor
+from employee.models import Doctor
 # from index.models import Slide
 from news.models import News
 

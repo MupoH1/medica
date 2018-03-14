@@ -1,8 +1,8 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import QuerySet, Count
-from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from .models import *
+
+from employee.models import Doctor
 from department.models import *
 
 

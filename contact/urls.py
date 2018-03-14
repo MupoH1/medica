@@ -18,4 +18,5 @@ from django.contrib import admin
 from contact import views
 
 urlpatterns = [
+    url(r'^contact/', views.contacts, name='contact'),
 ]

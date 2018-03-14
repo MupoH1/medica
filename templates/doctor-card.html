@@ -13,6 +13,7 @@ creature: 2017
 
 <!DOCTYPE html>
 {% load static %}
+{% load meta_tags %}
 <html lang="ru" itemscope itemtype="http://schema.org/WebPage">
 
 <head>
@@ -22,9 +23,9 @@ creature: 2017
   <meta content="telephone=no" name="format-detection">
   <meta name="HandheldFriendly" content="true">
 
-  <title>Многопрофильная клиника MEDICA в Пскове</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+    {% block meta_tags %}
+        {% include_meta_tags model_instance=doctor %}
+    {% endblock %}
 
   <link href ="https://fonts.google.com/selection?subset=cyrillic&category=Serif,Sans+Serif&selection.family=Fira+Sans+Condensed:400,500,700|Fira+Sans+Extra+Condensed:400,500,700|Fira+Sans:300,400,400i,500,500i,700,700i,800&selection.subset=cyrillic" rel="stylesheet">
   <link href="{% static 'css/plugins.min.css' %}" rel="stylesheet">
@@ -80,110 +81,13 @@ creature: 2017
 
   <div class="container">
     <div class="content">
-      <header class="header">
-        <div class="wrapper">
-          <div class="clr">
-            <div class="logotype">
-              <a href="/" title="Многопрофильная клиника MEDICA в Пскове">
-                <span><img src="{% static 'images/logotype-white.png' %}" alt="Многопрофильная клиника MEDICA в Пскове"></span>
-                <span>Многопрофильная клиника <b>MEDICA</b> в Пскове</span>
-              </a>
-            </div>
 
-            <div class="header-contacts">
-              <ul>
-                <li class="address">г. Псков, ул. <br> Бастионная, д. 9</li>
-                <li class="work-time">
-                  <p>Пн - Пт: с 8:00 до 20:00</p>
-                  <p>Сб: с 8:00 до 18:00</p>
-                </li>
-                <li class="phone">
-                  <a href="tel:8 (8112) 44-03-03">8 (8112) 44-03-03</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="get-call">
-              <a href="#get-call" class="btn" data-modal><span>Записаться на прием</span></a>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <div id="get-call" class="modal modal-md mfp-hide">
-        <div class="modal-content">
-          <div class="block-heading">
-            <h2>Запись на прием</h2>
-
-            <div class="block-heading-text">
-              <p>Поля отмеченные <sup>*</sup> - обязательны для заполнения</p>
-            </div>
-          </div>
-
-          <div class="modal-body">
-            <form action="">
-              <label>
-          <span>Представьтесь, пожалуйста, (полностью ФИО) <sup>*</sup></span>
-          <input type="text" required>
-        </label>
-              <label>
-          <span>Контактный телефон <sup>*</sup></span>
-          <input type="tel" required>
-        </label>
-              <label>
-          <span>E-mail</span>
-          <input type="email">
-        </label>
-              <label>
-          <span>Комментарий</span>
-          <textarea></textarea>
-        </label>
-
-              <p class="help-text">Проверьте, пожалуйста, указанные Вами номер телефона и адрес электронной почты. Если они были указаны неверно, мы не можем гарантировать обратную связь.</p>
-
-              <label class="rules">
-          <input type="checkbox" required>
-          <div class="checkbox">
-            <span>Я согласен с <a href="#0">правилами сайта</a></span>
-            <p>отправляя форму, я соглашаюсь на обработку моих персональных данных в соответствии c <a href="https://www.consultant.ru/document/cons_doc_LAW_61801/" target="_blank">Федеральным законом от 27 июля 2006 г. №152-ФЗ «О персональных данных»</a></p>
-          </div>
-        </label>
-
-              <button type="submit" class="btn"><span>Отправить</span></button>
-            </form>
-          </div>
-        </div>
-      </div>
-
-
-
-      <nav class="nav" role="navigation">
-        <div class="wrapper">
-          <ul>
-            <li><a href="/">Главная</a></li>
-            <li class="divider"></li>
-            <li><a href="#0">Медицинские программы</a></li>
-            <li class="divider"></li>
-            <li><a href="services.html">Услуги клиники</a></li>
-            <li class="divider"></li>
-            <li><a href="doctors.html">Врачи</a></li>
-            <li class="divider"></li>
-            <li><a href="#0">Прайс-лист</a></li>
-            <li class="divider"></li>
-            <li><a href="#0">Для посетителей</a></li>
-            <li class="divider"></li>
-            <li><a href="contacts.html">Контакты</a></li>
-          </ul>
-        </div>
-      </nav>
-
-
-
+      {% include 'header.html' %}
 
       <div class="page-heading doctor-heading">
         <div class="wrapper">
           <div class="breadcrumbs" itemprop="breadcrumb">
-            <a href="/">Главная</a> <span>/</span> <a href="doctors.html">Врачи</a> <span>/</span> <a href="doctors.html">{{ doctor.position }}</a> <span>/</span> {{ doctor.name }}
+            <a href="/">Главная</a> <span>/</span> <a href="{% url 'doctors' %}">Врачи</a> <span>/</span> <a href="#0">{{ doctor.position }}</a> <span>/</span> {{ doctor.name }}
           </div>
 
           <div class="heading" role="heading">
@@ -195,7 +99,47 @@ creature: 2017
           <div class="buttons">
             <a href="#get-call" class="btn" data-modal><span>Записаться на прием</span></a>
             <a href="#0" class="btn"><span>Задать вопрос</span></a>
-            <a href="#0" class="btn"><span>Добавить отзыв</span></a>
+            <a href="#add-review" class="btn"><span>Добавить отзыв</span></a>
+          </div>
+
+          <div id="add-review" class="modal modal-md modal-review mfp-hide">
+            <div class="modal-content">
+              <div class="block-heading">
+                <h2>Добавить отзыв</h2>
+              </div>
+
+              <div class="modal-body">
+                <form action="" method="post">{% csrf_token %}
+                  <label for="id_customer_name">
+                      <span>Имя</span>
+                      <input name="customer_name" id="id_customer_name" required type="text" maxlength="64">
+                  </label>
+                  <label for="id_doctor">
+                      <span>Выберите специалиста</span>
+                  <select name="doctor" id="id_doctor" >
+
+                      {% for id, name in review_form.fields.doctor.choices %}
+                  <option value="{{ id }}">{{ name }}</option>
+                      {% endfor %}
+                  </select>
+                      </label>
+                  <label for="id_review">
+                      <span>Отзыв</span>
+          <textarea name="review" id="id_review" required="" rows="10" cols="40"></textarea>
+                  </label>
+                  <label class="rules">
+                      <input type="checkbox" required>
+                      <div class="checkbox">
+                          <span>Я согласен с <a href="#0">правилами сайта</a></span>
+                          <p>отправляя форму, я соглашаюсь на обработку моих персональных данных в соответствии c <a href="https://www.consultant.ru/document/cons_doc_LAW_61801/" target="_blank">Федеральным законом от 27 июля 2006 г. №152-ФЗ «О персональных данных»</a></p>
+                      </div>
+                  </label>
+
+                  <button type="submit" class="btn"><span>Отправить</span></button>
+                  <button type="button" class="btn btn-reset"><span>Отменить</span></button>
+                </form>
+              </div>
+            </div>
           </div>
 
           <div class="photo">
@@ -211,19 +155,12 @@ creature: 2017
                 {% for text in doctor.get_textfields %}
               <li>{{ text.description }}</li>
                 {% endfor %}
-{#              <li>Является членом Российской гастроэнтерологической ассоциации.</li>#}
-{#              <li>В 2009 году окончила интернатуру по терапии на базе Псковской областной больницы.</li>#}
-{#              <li>Прошла курсы повышения квалификации на центральных базах г. Москвы и Санкт-Петербурга по гастроэнтерологии и терапии.</li>#}
-{#              <li>С 2009 года работала врачом-ординатором в Псковской областной больнице в отделении гастроэнтерологии.</li>#}
-{#              <li>Сертификат по специальности гастроэнтерология 0377060161978 от 25.04.2015г.</li>#}
-{#              <li>В 2010 году прошла обучение по специальности «Гастроэнтерология» на базе РМАПО в г. Москва и получила сертификат врача-гастроэнтеролога.</li>#}
             </ul>
 
             <div class="quote">
                 {% for seniority in doctor.get_seniority %}
               <p>{{ seniority.seniority }}</p>
                 {% endfor %}
-{#              <p>Стаж работы с 2009 года.</p>#}
             </div>
           </div>
 
@@ -232,7 +169,7 @@ creature: 2017
               <h2>Отзывы о враче</h2>
             </div>
 
-            <div class="row clr" id="rewiews">
+            <div class="row clr" id="reviews">
                 {% for review in articles %}
               <div class="doctor-review-item">
                 <div class="content">
@@ -245,75 +182,6 @@ creature: 2017
                 </div>
               </div>
                 {% endfor %}
-{#              <div class="doctor-review-item">#}
-{#                <div class="content">#}
-{#                  <div class="clr">#}
-{#                    <ul class="rating">#}
-{#                      <li class="active"></li>#}
-{#                      <li class="active"></li>#}
-{#                      <li class="active"></li>#}
-{#                      <li class="active"></li>#}
-{#                      <li class="active"></li>#}
-{#                    </ul>#}
-{#                    <div class="name">Светлана, <span>02 мая 2017</span></div>#}
-{#                  </div>#}
-{##}
-{#                  <div class="email">#}
-{#                    <a href="mailto:Info@Clinikamedika.Ru">Info@Clinikamedika.Ru</a>#}
-{#                  </div>#}
-{##}
-{#                  <div class="text">#}
-{#                    <p>Хочу выразить огромную благодарность врачу Островской Светлане Викторовне и анестезиологу Гаврюченкову Владимиру Александровичу за проведение колоноскопии. Под наркозом это просто сладкий сон. Очень волновалась, но как оказалось, совершенно#}
-{#                      напрасно. Спасибо за чуткость к пациенту, понимание и тактичность!</p>#}
-{#                  </div>#}
-{#                </div>#}
-{#              </div>#}
-{#              <div class="doctor-review-item">#}
-{#                <div class="content">#}
-{#                  <div class="clr">#}
-{#                    <ul class="rating">#}
-{#                      <li class="active"></li>#}
-{#                      <li class="active"></li>#}
-{#                      <li class="active"></li>#}
-{#                      <li class="active"></li>#}
-{#                      <li class="active"></li>#}
-{#                    </ul>#}
-{#                    <div class="name">Светлана, <span>02 мая 2017</span></div>#}
-{#                  </div>#}
-{##}
-{#                  <div class="email">#}
-{#                    <a href="mailto:Info@Clinikamedika.Ru">Info@Clinikamedika.Ru</a>#}
-{#                  </div>#}
-{##}
-{#                  <div class="text">#}
-{#                    <p>Хочу выразить огромную благодарность врачу Островской Светлане Викторовне и анестезиологу Гаврюченкову Владимиру Александровичу за проведение колоноскопии. Под наркозом это просто сладкий сон. Очень волновалась, но как оказалось, совершенно#}
-{#                      напрасно. Спасибо за чуткость к пациенту, понимание и тактичность!</p>#}
-{#                  </div>#}
-{#                </div>#}
-{#              </div>#}
-{#              <div class="doctor-review-item">#}
-{#                <div class="content">#}
-{#                  <div class="clr">#}
-{#                    <ul class="rating">#}
-{#                      <li class="active"></li>#}
-{#                      <li class="active"></li>#}
-{#                      <li class="active"></li>#}
-{#                      <li class="active"></li>#}
-{#                      <li class="active"></li>#}
-{#                    </ul>#}
-{#                    <div class="name">Светлана, <span>02 мая 2017</span></div>#}
-{#                  </div>#}
-{##}
-{#                  <div class="email">#}
-{#                    <a href="mailto:Info@Clinikamedika.Ru">Info@Clinikamedika.Ru</a>#}
-{#                  </div>#}
-{##}
-{#                  <div class="text">#}
-{#                    <p>Хочу выразить огромную благодарность врачу Островской Светлане Викторовне и анестезиологу Гаврюченкову Владимиру Александровичу за проведение колоноскопии. Под наркозом это просто сладкий сон. Очень волновалась, но как оказалось, совершенно#}
-{#                      напрасно. Спасибо за чуткость к пациенту, понимание и тактичность!</p>#}
-{#                  </div>#}
-{#                </div>#}
-{#              </div>#}
             </div>
 
             <div class="pagination">
@@ -321,10 +189,10 @@ creature: 2017
                 <div class="pagination-num"><span>{{ articles.number }}</span> / {{ articles.paginator.num_pages }}</div>
                 <div class="pagination-arrows">
                     {% if articles.has_previous %}
-                        <a href="?page={{ articles.previous_page_number }}#rewiews" class="arrow-prev" title="Назад">Назад</a>
+                        <a href="?page={{ articles.previous_page_number }}#reviews" class="arrow-prev" title="Назад">Назад</a>
                     {% endif %}
                     {% if articles.has_next %}
-                        <a href="?page={{ articles.next_page_number }}#rewiews" class="arrow-next" title="Вперед">Вперед</a>
+                        <a href="?page={{ articles.next_page_number }}#reviews" class="arrow-next" title="Вперед">Вперед</a>
                     {% endif %}
                 </div>
               </div>
@@ -336,108 +204,7 @@ creature: 2017
 
     </div>
 
-    <footer class="footer">
-      <div class="wrapper">
-        <div class="clr">
-          <div class="footer-left">
-            <div class="logotype">
-              <a href="/" title="Многопрофильная клиника MEDICA в Пскове">
-                <span><img src="{% static 'images/logotype-white.png' %}" alt="Многопрофильная клиника MEDICA в Пскове"></span>
-              </a>
-            </div>
-
-            <address>г. Псков, ул. <br> Бастионная, д. 9</address>
-
-            <div class="phone">
-              <a href="tel:88112440303">8 (8112) 44-03-03</a>
-            </div>
-
-            <ul class="social">
-              <li>
-                <a href="#0" target="_blank"><img src="{% static 'images/vk-icon.png' %}" alt="VK.com"></a>
-              </li>
-              <li>
-                <a href="#0" target="_blank"><img src="{% static 'images/fb-icon.png' %}" alt="Facebook"></a>
-              </li>
-              <li>
-                <a href="#0" target="_blank"><img src="{% static 'images/gp-icon.png' %}" alt="Google+"></a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="footer-right">
-            <div class="footer-links">
-              <div class="clr">
-                <ul class="left">
-                  <li><a href="#0">Врачи</a></li>
-                  <li><a href="#0">Медицинские программы</a></li>
-                  <li><a href="#0">Контакты</a></li>
-                </ul>
-
-                <ul class="center">
-                  <li>
-                    <a href="#0">Услуги клиники</a>
-
-                    <div class="row clr">
-                      <ul>
-                        <li><a href="#0">Гинекология</a></li>
-                        <li><a href="#0">Кардиология</a></li>
-                        <li><a href="#0">Маммология</a></li>
-                        <li><a href="#0">Неврология</a></li>
-                        <li><a href="#0">Нефрология</a></li>
-                        <li><a href="#0">Проктология</a></li>
-                        <li><a href="#0">Ревматология</a></li>
-                      </ul>
-
-                      <ul>
-                        <li><a href="#0">Сосудистая хирургия</a></li>
-                        <li><a href="#0">Травматология-ортопедия</a></li>
-                        <li><a href="#0">УЗИ</a></li>
-                        <li><a href="#0">Урология</a></li>
-                        <li><a href="#0">Физиотерапия</a></li>
-                        <li><a href="#0">Функциональная диагностика</a></li>
-                        <li><a href="#0">Эндокринология</a></li>
-                        <li><a href="#0">Эндоскопия</a></li>
-                      </ul>
-                    </div>
-                  </li>
-                </ul>
-
-                <ul class="right">
-                  <li>
-                    <a href="#0">Для посетителей</a>
-
-                    <div class="row clr">
-                      <ul>
-                        <li><a href="#0">О клинике</a></li>
-                        <li><a href="#0">Прайс-лист</a></li>
-                        <li><a href="#0">Документы</a></li>
-                        <li><a href="#0">Отзывы</a></li>
-                        <li><a href="#0">Фотогалерея</a></li>
-                        <li><a href="#0">Вопрос-ответ</a></li>
-                        <li><a href="#0">Новости</a></li>
-                      </ul>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-line">
-        <div class="wrapper">
-          <div class="clr">
-            <div class="copyright">&copy; Medica. All rights resevered</div>
-
-            <div class="coffee">
-              <a href="https://www.coffeestudio.ru/" target="_blank">Сделано в интернет-агенстве <span>Coffee Studio</span></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
+    {% include 'footer.html' %}
 
   </div>
 

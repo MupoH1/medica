@@ -13,6 +13,7 @@ creature: 2017
 
 <!DOCTYPE html>
 {% load static %}
+{% load meta_tags %}
 <html lang="ru" itemscope itemtype="http://schema.org/WebPage">
 
 <head>
@@ -22,9 +23,9 @@ creature: 2017
   <meta content="telephone=no" name="format-detection">
   <meta name="HandheldFriendly" content="true">
 
-  <title>Многопрофильная клиника MEDICA в Пскове</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+    {% block meta_tags %}
+    {% include_meta_tags %}
+    {% endblock %}
 
   <link href ="https://fonts.google.com/selection?subset=cyrillic&category=Serif,Sans+Serif&selection.family=Fira+Sans+Condensed:400,500,700|Fira+Sans+Extra+Condensed:400,500,700|Fira+Sans:300,400,400i,500,500i,700,700i,800&selection.subset=cyrillic" rel="stylesheet">
   <link href="{% static 'css/plugins.min.css' %}" rel="stylesheet">
@@ -80,105 +81,8 @@ creature: 2017
 
   <div class="container">
     <div class="content">
-      <header class="header">
-        <div class="wrapper">
-          <div class="clr">
-            <div class="logotype">
-              <a href="/" title="Многопрофильная клиника MEDICA в Пскове">
-                <span><img src="{% static 'images/logotype.png' %}" alt="Многопрофильная клиника MEDICA в Пскове"></span>
-                <span>Многопрофильная клиника <b>MEDICA</b> в Пскове</span>
-              </a>
-            </div>
 
-            <div class="header-contacts">
-              <ul>
-                <li class="address">г. Псков, ул. <br> Бастионная, д. 9</li>
-                <li class="work-time">
-                  <p>Пн - Пт: с 8:00 до 20:00</p>
-                  <p>Сб: с 8:00 до 18:00</p>
-                </li>
-                <li class="phone">
-                  <a href="tel:8 (8112) 44-03-03">8 (8112) 44-03-03</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="get-call">
-              <a href="#get-call" class="btn" data-modal><span>Записаться на прием</span></a>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <div id="get-call" class="modal modal-md mfp-hide">
-        <div class="modal-content">
-          <div class="block-heading">
-            <h2>Запись на прием</h2>
-
-            <div class="block-heading-text">
-              <p>Поля отмеченные <sup>*</sup> - обязательны для заполнения</p>
-            </div>
-          </div>
-
-          <div class="modal-body">
-            <form action="">
-              <label>
-          <span>Представьтесь, пожалуйста, (полностью ФИО) <sup>*</sup></span>
-          <input type="text" required>
-        </label>
-              <label>
-          <span>Контактный телефон <sup>*</sup></span>
-          <input type="tel" required>
-        </label>
-              <label>
-          <span>E-mail</span>
-          <input type="email">
-        </label>
-              <label>
-          <span>Комментарий</span>
-          <textarea></textarea>
-        </label>
-
-              <p class="help-text">Проверьте, пожалуйста, указанные Вами номер телефона и адрес электронной почты. Если они были указаны неверно, мы не можем гарантировать обратную связь.</p>
-
-              <label class="rules">
-          <input type="checkbox" required>
-          <div class="checkbox">
-            <span>Я согласен с <a href="#0">правилами сайта</a></span>
-            <p>отправляя форму, я соглашаюсь на обработку моих персональных данных в соответствии c <a href="https://www.consultant.ru/document/cons_doc_LAW_61801/" target="_blank">Федеральным законом от 27 июля 2006 г. №152-ФЗ «О персональных данных»</a></p>
-          </div>
-        </label>
-
-              <button type="submit" class="btn"><span>Отправить</span></button>
-            </form>
-          </div>
-        </div>
-      </div>
-
-
-
-      <nav class="nav" role="navigation">
-        <div class="wrapper">
-          <ul>
-            <li><a href="/">Главная</a></li>
-            <li class="divider"></li>
-            <li><a href="#0">Медицинские программы</a></li>
-            <li class="divider"></li>
-            <li><a href="services.html">Услуги клиники</a></li>
-            <li class="divider"></li>
-            <li><a href="doctors.html">Врачи</a></li>
-            <li class="divider"></li>
-            <li><a href="#0">Прайс-лист</a></li>
-            <li class="divider"></li>
-            <li><a href="#0">Для посетителей</a></li>
-            <li class="divider"></li>
-            <li><a href="contacts.html">Контакты</a></li>
-          </ul>
-        </div>
-      </nav>
-
-
-
+      {% include 'header.html' %}
 
       <div class="page-heading with-img">
         <div class="img">
@@ -215,147 +119,6 @@ creature: 2017
               </div>
             </div>
               {% endfor %}
-{#            <div class="services-list-item">#}
-{#              <div class="content">#}
-{#                <div class="icon"><img src="images/icons/service-icon-2.png" alt=""></div>#}
-{#                <div class="title">Гастроэнтерологии</div>#}
-{#                <div class="story">#}
-{#                  <p>По направлению специалиста проводятся необходимые диагностические исследования: эндоскопическое исследование желудка, кишечника, пищевода, дыхательный уреазный тест, УЗИ органов брюшной полости, и назначается эффективное лечение.</p>#}
-{#                </div>#}
-{#                <div class="more"><a href="#0">Подробнее</a></div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="services-list-item">#}
-{#              <div class="content">#}
-{#                <div class="icon"><img src="images/icons/service-icon-3.png" alt=""></div>#}
-{#                <div class="title">Гинекологии</div>#}
-{#                <div class="story">#}
-{#                  <p>Проводится высококвалифицированная лабораторная диагностика, инструментальное исследование, позволяющие назначить пациентке правильное лечение с использованием самого современного оборудования для малоинвазивной хирургии (в т.ч. гистероскопии).</p>#}
-{#                </div>#}
-{#                <div class="more"><a href="#0">Подробнее</a></div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="services-list-item">#}
-{#              <div class="content">#}
-{#                <div class="icon"><img src="images/icons/service-icon-4.png" alt=""></div>#}
-{#                <div class="title">Кардиологии</div>#}
-{#                <div class="story">#}
-{#                  <p>Проводятся диагностика (ЭКГ, ЭХОКГ сердца, холтеровское мониторирование ЭКГ, 12-канальное холтеровское мониторирование ЭКГ, СМАД, лабораторное обследование) и лечение стенокардии, атеросклероза, коронарной болезни сердца, нарушения проводимости#}
-{#                    и ритма сердечной деятельности, артериальной гипертензии.</p>#}
-{#                </div>#}
-{#                <div class="more"><a href="#0">Подробнее</a></div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="services-list-item">#}
-{#              <div class="content">#}
-{#                <div class="icon"><img src="images/icons/service-icon-5.png" alt=""></div>#}
-{#                <div class="title">Лабораторной диагностики</div>#}
-{#                <div class="story">#}
-{#                  <p>Более 1500 видов современных диагностических достоверных исследований на высокотехнологичном оборудовании: гистологические, биохимические анализы крови, мочи и т.д.</p>#}
-{#                </div>#}
-{#                <div class="more"><a href="#0">Подробнее</a></div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="services-list-item">#}
-{#              <div class="content">#}
-{#                <div class="icon"><img src="images/icons/service-icon-6.png" alt=""></div>#}
-{#                <div class="title">Маммологии</div>#}
-{#                <div class="story">#}
-{#                  <p>Выявление и решение всевозможных проблем, связанных с молочной железой, с использованием диагностических пункций, гистологических исследований, применение прессотерапии после операций по удалению молочных желез.</p>#}
-{#                </div>#}
-{#                <div class="more"><a href="#0">Подробнее</a></div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="services-list-item">#}
-{#              <div class="content">#}
-{#                <div class="icon"><img src="images/icons/service-icon-7.png" alt=""></div>#}
-{#                <div class="title">Неврологии</div>#}
-{#                <div class="story">#}
-{#                  <p>определение правильного диагноза с помощью различных диагностических обследований и проведение лучшей терапии с применением лекарственных препаратов и физиотерапевтических процедур.</p>#}
-{#                </div>#}
-{#                <div class="more"><a href="#0">Подробнее</a></div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="services-list-item">#}
-{#              <div class="content">#}
-{#                <div class="icon"><img src="images/icons/service-icon-8.png" alt=""></div>#}
-{#                <div class="title">Нефрологии</div>#}
-{#                <div class="story">#}
-{#                  <p>обследование врачом-специалистом, при необходимости — с применением дополнительных диагностических исследований, и проведение эффективного лечения.</p>#}
-{#                </div>#}
-{#                <div class="more"><a href="#0">Подробнее</a></div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="services-list-item">#}
-{#              <div class="content">#}
-{#                <div class="icon"><img src="images/icons/service-icon-9.png" alt=""></div>#}
-{#                <div class="title">Сосудистой хирургии</div>#}
-{#                <div class="story">#}
-{#                  <p>эффективное современное лечение заболеваний вен, артерий и лимфатических узлов (консервативная терапия, удаление участков поврежденных вен малоинвазивным способом, позволяющим больному быстро выздороветь).</p>#}
-{#                </div>#}
-{#                <div class="more"><a href="#0">Подробнее</a></div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="services-list-item">#}
-{#              <div class="content">#}
-{#                <div class="icon"><img src="images/icons/service-icon-10.png" alt=""></div>#}
-{#                <div class="title">Травматологии-ортопедии</div>#}
-{#                <div class="story">#}
-{#                  <p>лечение заболеваний костей, связок, мягких тканей, опорно-двигательного аппарата после травмы.</p>#}
-{#                </div>#}
-{#                <div class="more"><a href="#0">Подробнее</a></div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="services-list-item">#}
-{#              <div class="content">#}
-{#                <div class="icon"><img src="images/icons/service-icon-11.png" alt=""></div>#}
-{#                <div class="title">УЗИ</div>#}
-{#                <div class="story">#}
-{#                  <p>(щитовидной железы, брюшной полости, вен и артерий, при беременности и др.)</p>#}
-{#                </div>#}
-{#                <div class="more"><a href="#0">Подробнее</a></div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="services-list-item">#}
-{#              <div class="content">#}
-{#                <div class="icon"><img src="images/icons/service-icon-12.png" alt=""></div>#}
-{#                <div class="title">Физиотерапии</div>#}
-{#                <div class="story">#}
-{#                  <p>применение аппаратной прессотерапии на самом современном оборудовании.</p>#}
-{#                </div>#}
-{#                <div class="more"><a href="#0">Подробнее</a></div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="services-list-item">#}
-{#              <div class="content">#}
-{#                <div class="icon"><img src="images/icons/service-icon-13.png" alt=""></div>#}
-{#                <div class="title">Функциональной диагностики</div>#}
-{#                <div class="story">#}
-{#                  <p>максимально точная электрокардиография, суточный мониторинг АД и ЭКГ (с уникальной 12-канальной методикой), эхокардиография и др.</p>#}
-{#                </div>#}
-{#                <div class="more"><a href="#0">Подробнее</a></div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="services-list-item">#}
-{#              <div class="content">#}
-{#                <div class="icon"><img src="images/icons/service-icon-14.png" alt=""></div>#}
-{#                <div class="title">Эндокринологии</div>#}
-{#                <div class="story">#}
-{#                  <p>постановка диагноза и лечение заболеваний щитовидной железы, наблюдение при сахарном диабете.</p>#}
-{#                </div>#}
-{#                <div class="more"><a href="#0">Подробнее</a></div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="services-list-item">#}
-{#              <div class="content">#}
-{#                <div class="icon"><img src="images/icons/service-icon-15.png" alt=""></div>#}
-{#                <div class="title">Эндоскопии</div>#}
-{#                <div class="story">#}
-{#                  <p>применение высокотехнологичного информативного метода исследования – видеоэндоскопии (проведение ВЭГДС, видеоколоноскопии и малой оперативной эндоскопии).</p>#}
-{#                </div>#}
-{#                <div class="more"><a href="#0">Подробнее</a></div>#}
-{#              </div>#}
-{#            </div>#}
           </div>
         </div>
       </div>
@@ -363,108 +126,7 @@ creature: 2017
 
     </div>
 
-    <footer class="footer">
-      <div class="wrapper">
-        <div class="clr">
-          <div class="footer-left">
-            <div class="logotype">
-              <a href="/" title="Многопрофильная клиника MEDICA в Пскове">
-                <span><img src="{% static 'images/logotype-white.png' %}" alt="Многопрофильная клиника MEDICA в Пскове"></span>
-              </a>
-            </div>
-
-            <address>г. Псков, ул. <br> Бастионная, д. 9</address>
-
-            <div class="phone">
-              <a href="tel:88112440303">8 (8112) 44-03-03</a>
-            </div>
-
-            <ul class="social">
-              <li>
-                <a href="#0" target="_blank"><img src="{% static 'images/vk-icon.png' %}" alt="VK.com"></a>
-              </li>
-              <li>
-                <a href="#0" target="_blank"><img src="{% static 'images/fb-icon.png' %}" alt="Facebook"></a>
-              </li>
-              <li>
-                <a href="#0" target="_blank"><img src="{% static 'images/gp-icon.png' %}" alt="Google+"></a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="footer-right">
-            <div class="footer-links">
-              <div class="clr">
-                <ul class="left">
-                  <li><a href="#0">Врачи</a></li>
-                  <li><a href="#0">Медицинские программы</a></li>
-                  <li><a href="#0">Контакты</a></li>
-                </ul>
-
-                <ul class="center">
-                  <li>
-                    <a href="#0">Услуги клиники</a>
-
-                    <div class="row clr">
-                      <ul>
-                        <li><a href="#0">Гинекология</a></li>
-                        <li><a href="#0">Кардиология</a></li>
-                        <li><a href="#0">Маммология</a></li>
-                        <li><a href="#0">Неврология</a></li>
-                        <li><a href="#0">Нефрология</a></li>
-                        <li><a href="#0">Проктология</a></li>
-                        <li><a href="#0">Ревматология</a></li>
-                      </ul>
-
-                      <ul>
-                        <li><a href="#0">Сосудистая хирургия</a></li>
-                        <li><a href="#0">Травматология-ортопедия</a></li>
-                        <li><a href="#0">УЗИ</a></li>
-                        <li><a href="#0">Урология</a></li>
-                        <li><a href="#0">Физиотерапия</a></li>
-                        <li><a href="#0">Функциональная диагностика</a></li>
-                        <li><a href="#0">Эндокринология</a></li>
-                        <li><a href="#0">Эндоскопия</a></li>
-                      </ul>
-                    </div>
-                  </li>
-                </ul>
-
-                <ul class="right">
-                  <li>
-                    <a href="#0">Для посетителей</a>
-
-                    <div class="row clr">
-                      <ul>
-                        <li><a href="#0">О клинике</a></li>
-                        <li><a href="#0">Прайс-лист</a></li>
-                        <li><a href="#0">Документы</a></li>
-                        <li><a href="#0">Отзывы</a></li>
-                        <li><a href="#0">Фотогалерея</a></li>
-                        <li><a href="#0">Вопрос-ответ</a></li>
-                        <li><a href="#0">Новости</a></li>
-                      </ul>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-line">
-        <div class="wrapper">
-          <div class="clr">
-            <div class="copyright">&copy; Medica. All rights resevered</div>
-
-            <div class="coffee">
-              <a href="https://www.coffeestudio.ru/" target="_blank">Сделано в интернет-агенстве <span>Coffee Studio</span></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
+    {% include 'footer.html' %}
 
   </div>
 

@@ -1,26 +1,6 @@
-from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
-from django.template import RequestContext
-
 from .models import *
-
-
-# def landing(request):
-#     name = 'Miron'
-#     current_day = "16.10.2017"
-#     form = SubscriberForm(request.POST or None)
-#     if request.method == 'POST' and form.is_valid():
-#         print(request.POST)
-#         print(form.cleaned_data)
-#         data = form.cleaned_data
-#         print(data['name'])
-#
-#         new_form = form.save()
-#         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-#
-#     return render(request, 'landing/landing.html', locals())
 
 
 def news(request):

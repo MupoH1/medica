@@ -3,7 +3,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 from django.db.models import QuerySet, Count
 
-from doctor_card.models import Doctor
+from employee.models import Doctor
 from news.models import News
 from service.models import Service
 from .models import Department

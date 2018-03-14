@@ -4,8 +4,6 @@ from .models import *
 
 class ReviewForm(forms.ModelForm):
 
-
-
     class Meta:
         model = Review
         exclude = ('',)

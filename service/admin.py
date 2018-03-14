@@ -13,7 +13,6 @@ class ServiceAdmin(ieadmin.ImportExportModelAdmin):
     list_display = [field.name for field in Service._meta.fields]
     inlines = [PriceListInline]
 
-
     class Meta:
         model = Service, PriceList
 
