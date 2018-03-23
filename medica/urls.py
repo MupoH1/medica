@@ -17,6 +17,20 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
+from django.views.generic import TemplateView
+
+from .sitemaps import DepartmentSitemap, DoctorSitemap, NewsSitemap, StaticViewSitemap
+
+handler404 = 'index.views.handler404'
+handler500 = 'index.views.handler500'
+
+sitemaps = {
+            'department': DepartmentSitemap,
+            'doctor': DoctorSitemap,
+            'news': NewsSitemap,
+            'static': StaticViewSitemap
+            }
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -29,7 +43,11 @@ urlpatterns = [
     url(r'^', include('faq.urls')),
     url(r'^', include('index.urls')),
     url(r'^', include('document.urls')),
-    url(r'^', include('contact.urls')),
+    url(r'^', include('contacts.urls')),
+    url(r'^', include('about.urls')),
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
+        name='django.contrib.sitemaps.views.sitemap'),
+    url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
 ] \
               + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
               + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -111,7 +111,7 @@ creature: 2017
         <div class="main-services">
           <div class="main-services-content">
             <div class="row clr">
-                {% for item in departments %}
+                {% for item in index_departments %}
               <div class="item">
                 <a href="{% url 'department' item.id %}">
                   <span>{{ item.short_name }}</span>
@@ -276,7 +276,7 @@ creature: 2017
             <h2>Наша клиника</h2>
 
             <div class="block-heading-link">
-              <a href="#0"><span>смотреть фото нашей клиники</span></a>
+              <a href="{% url 'about' %}"><span>смотреть фото нашей клиники</span></a>
             </div>
           </div>
 

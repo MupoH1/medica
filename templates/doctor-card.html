@@ -87,7 +87,7 @@ creature: 2017
       <div class="page-heading doctor-heading">
         <div class="wrapper">
           <div class="breadcrumbs" itemprop="breadcrumb">
-            <a href="/">Главная</a> <span>/</span> <a href="{% url 'doctors' %}">Врачи</a> <span>/</span> <a href="#0">{{ doctor.position }}</a> <span>/</span> {{ doctor.name }}
+            <a href="/">Главная</a> <span>/</span> <a href="{% url 'doctors' %}">Врачи</a> <span>/</span> <a href="{% url 'department' doctor.department.id %}">{{ doctor.department.short_name }}</a> <span>/</span> {{ doctor.name }}
           </div>
 
           <div class="heading" role="heading">
@@ -98,8 +98,48 @@ creature: 2017
 
           <div class="buttons">
             <a href="#get-call" class="btn" data-modal><span>Записаться на прием</span></a>
-            <a href="#0" class="btn"><span>Задать вопрос</span></a>
-            <a href="#add-review" class="btn"><span>Добавить отзыв</span></a>
+            <a href="#ask-question" class="btn" data-modal><span>Задать вопрос</span></a>
+            <a href="#add-review" class="btn" data-modal><span>Добавить отзыв</span></a>
+          </div>
+
+
+          <div id="ask-question" class="modal modal-md modal-review mfp-hide">
+            <div class="modal-content">
+              <div class="block-heading">
+                <h2>Добавить отзыв</h2>
+              </div>
+              <div class="modal-body">
+                <form action="" method="post">{% csrf_token %}
+                  <label for="id_customer_name">
+                      <span>Ваше имя:</span>
+                      <input type="text" name="customer_name" maxlength="32" required="" id="id_customer_name">
+                  </label>
+                  <label for="id_question">
+                      <span>Вопрос:</span>
+          <textarea name="question" cols="40" rows="10" maxlength="90" required="" id="id_question"></textarea>
+                  </label>
+                    <label for="id_department">
+                      <span>Выберите отделение:</span>
+                  <select name="department" required="" id="id_department" >
+
+                      {% for id, department in question_form.fields.department.choices %}
+                  <option value="{{ id }}">{{ department }}</option>
+                      {% endfor %}
+                  </select>
+                  </label>
+                  <label class="rules">
+                      <input type="checkbox" required>
+                      <div class="checkbox">
+                          <span>Я согласен с <a href="#0">правилами сайта</a></span>
+                          <p>отправляя форму, я соглашаюсь на обработку моих персональных данных в соответствии c <a href="https://www.consultant.ru/document/cons_doc_LAW_61801/" target="_blank">Федеральным законом от 27 июля 2006 г. №152-ФЗ «О персональных данных»</a></p>
+                      </div>
+                  </label>
+
+                  <button type="submit" class="btn"><span>Отправить</span></button>
+                  <button type="button" class="btn btn-reset"><span>Отменить</span></button>
+                </form>
+              </div>
+            </div>
           </div>
 
           <div id="add-review" class="modal modal-md modal-review mfp-hide">

@@ -105,6 +105,7 @@ creature: 2017
       </div>
 
       <div class="department">
+      {% if department.consult_doctor.id %}
         <div class="department-consult">
           <div class="wrapper">
             <div class="clr">
@@ -117,7 +118,7 @@ creature: 2017
                   </div>
                 </div>
               </div>
-
+                
               <div class="card">
                 <div class="content">
                   <div class="photo">
@@ -138,6 +139,7 @@ creature: 2017
             </div>
           </div>
         </div>
+      {% endif %}
 
         <div class="why-we">
           <div class="wrapper">
@@ -163,7 +165,7 @@ creature: 2017
               <h2>ЦЕны</h2>
 
               <div class="block-heading-link">
-                <a href="#0">Скачать полный прайс-лист</a>
+                <a href="{{ price_file.file.url }}">Скачать полный прайс-лист</a>
               </div>
             </div>
 

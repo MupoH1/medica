@@ -1,0 +1,145 @@
+<!--
+
+╔╔╗╔╔╔═╔═  ╔╗╦║║╦╗╦╔╗
+║║║╠╠╠═╠═  ╚╗║║║║║║║║
+╚╚╝║║╚═╚═  ╚╝║╚╝╩╝╩╚╝
+
+www.coffeestudio.ru
+support: web@coffeestudio.ru
+creature: 2017
+
+-->
+
+
+<!DOCTYPE html>
+{% load static %}
+{% load meta_tags %}
+<html lang="ru" itemscope itemtype="http://schema.org/WebPage">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="telephone=no" name="format-detection">
+  <meta name="HandheldFriendly" content="true">
+
+    {% block meta_tags %}
+        {% include_meta_tags model_instance=article %}
+    {% endblock %}
+
+  <link href ="https://fonts.google.com/selection?subset=cyrillic&category=Serif,Sans+Serif&selection.family=Fira+Sans+Condensed:400,500,700|Fira+Sans+Extra+Condensed:400,500,700|Fira+Sans:300,400,400i,500,500i,700,700i,800&selection.subset=cyrillic" rel="stylesheet">
+  <link href="{% static 'css/plugins.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/styles.min.css' %}" rel="stylesheet">
+
+  <meta property="og:title" content="">
+  <meta property="og:url" content="">
+  <meta property="og:description" content="">
+  <meta property="og:image" content="">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="500">
+  <meta property="og:image:height" content="300">
+  <meta property="twitter:description" content="">
+  <link rel="image_src" href="">
+
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!--[if lt IE 9 ]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <div id="cookie-policy-info" class="cookie-policy" role="alert">
+    <div class="wrapper">
+      <noindex>
+        <p>Наш сайт использует cookie-файлы, данные об IP-адресе и вашем местоположении для того, чтобы сделать сайт максимально удобным для Вас.</p>
+        <p>Если Вы продолжите пользоваться нашими услугами, мы будем считать, что Вы согласны с использованием cookie-файлов.</p>
+        <p><a href="/policy/">Политика конфиденциальности</a></p>
+        <p>&nbsp;</p>
+        <button id="cookie-policy-btn" class="cookie-policy-button" type="button"><span>Принять</span></button>
+      </noindex>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    function isReadCookiePolicy() {
+      var e = Cookies.get("isReadCookiePolicy"),
+        o = document.getElementById("cookie-policy-info");
+      o.style.display = void 0 !== e ? "none" : "block"
+    }
+
+    function clickCookieBtn() {
+      var e = document.getElementById("cookie-policy-info");
+      Cookies.set("isReadCookiePolicy", "true", {
+        expires: 365
+      }), e.style.display = "none"
+    }
+    document.getElementById("cookie-policy-btn").addEventListener("click", clickCookieBtn, !1), document.addEventListener("DOMContentLoaded", isReadCookiePolicy);
+  </script>
+
+
+  <div class="container">
+    <div class="content">
+
+      {% include 'header.html' %}
+
+      <div class="page-heading news-heading">
+        <div class="wrapper">
+          <div class="breadcrumbs" itemprop="breadcrumb">
+            <a href="/">Главная</a> <span>/</span> {{ article.title }}
+          </div>
+
+          <div class="heading" role="heading">
+            <h1>{{ article.title }}</h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="news">
+        <div class="wrapper">
+          <div class="news-full">
+
+            <div class="news-full-story">
+                {% if article.get_image %}
+                {% for image in article.get_image %}
+              <img src="{{ image.image.url }}" style="float: left; margin-right: 75px;" alt="">
+                {% endfor %}
+                {% endif %}
+              <p>&nbsp;</p>
+              <p>&nbsp;</p>
+                {{ article.text|safe }}
+
+              <div class="img-gallery">
+                  {% for image in article.get_other_images %}
+                <div class="item">
+                  <a href="{{ image.image.url }}">
+                    <img src="{{ image.image.url }}" alt="">
+                  </a>
+                </div>
+                  {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    {% include 'footer.html' %}
+
+  </div>
+
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/js.cookie.min.js' %}"></script>
+  <script src="{% static 'js/plugins/magnific-popup.min.js' %}"></script>
+
+
+  <script src="{% static 'js/libs.js' %}"></script>
+
+  <div class="counters">counters</div>
+
+</body>
+
+</html>

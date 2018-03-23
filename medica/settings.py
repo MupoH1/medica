@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     'ckeditor',
     'ckeditor_uploader',
     'metatags',
@@ -47,9 +48,10 @@ INSTALLED_APPS = [
     'faq',
     'appointment',
     'index',
-    'contact',
+    'contacts',
     'document',
     'employee',
+    'about',
 ]
 
 MIDDLEWARE = [
@@ -133,10 +135,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static", "static_dev"),
+    os.path.join(BASE_DIR, "static"),
 )
-
-STATIC_ROOT = os.path.join(BASE_DIR, "static", "static_prod")
 
 MEDIA_URL = '/media/'
 

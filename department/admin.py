@@ -8,10 +8,12 @@ from metatags.admin import MetaTagInline
 class DoctorInline(admin.TabularInline):
     model = Doctor
     extra = 1
+    classes = ['collapse']
 
 
 class DepartmentAdmin(admin.ModelAdmin):
-    list_display = [field.name for field in Department._meta.fields]
+    list_display = ['id','name', 'short_name', 'consult_price', 'consult_doctor', 'is_index_active']
+    list_editable = ['name', 'short_name', 'consult_price', 'consult_doctor', 'is_index_active']
     inlines = [DoctorInline, MetaTagInline,]
 
     class Meta:

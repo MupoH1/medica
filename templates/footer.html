@@ -35,7 +35,7 @@
                 <ul class="left">
                   <li><a href="{% url 'doctors' %}">Врачи</a></li>
                   <li><a href="{% url 'news' %}">Медицинские программы</a></li>
-                  <li><a href="{% url 'contact' %}">Контакты</a></li>
+                  <li><a href="{% url 'contacts' %}">Контакты</a></li>
                 </ul>
 
                 <ul class="center">
@@ -64,11 +64,11 @@
 
                     <div class="row clr">
                       <ul>
-                        <li><a href="#0">О клинике</a></li>
+                        <li><a href="{% url 'about' %}">О клинике</a></li>
                         <li><a href="#0">Прайс-лист</a></li>
                         <li><a href="{% url 'documents' %}">Документы</a></li>
                         <li><a href="{% url 'reviews' %}">Отзывы</a></li>
-                        <li><a href="#0">Фотогалерея</a></li>
+                        <li><a href="{% url 'about' %}">Фотогалерея</a></li>
                         <li><a href="{% url 'faq' %}">Вопрос-ответ</a></li>
                         <li><a href="{% url 'news' %}">Новости</a></li>
                       </ul>

@@ -1,0 +1,40 @@
+User-agent: *
+Disallow: /*.pdf
+Disallow: /*.ppt
+Disallow: /*.doc
+Disallow: /*.xls
+
+User-agent: Yandex
+Allow: /about
+Allow: /contacts
+Allow: /department
+Allow: /doctors
+Allow: /doctor-card
+Allow: /documents
+Allow: /faq
+Allow: /index
+Allow: /news
+Allow: /reviews
+Allow: /services
+Allow: /text-page
+Disallow: /admin
+Crawl-delay: 3
+
+User-agent: Googlebot
+Allow: /about
+Allow: /contacts
+Allow: /department
+Allow: /doctors
+Allow: /doctor-card
+Allow: /documents
+Allow: /faq
+Allow: /index
+Allow: /news
+Allow: /reviews
+Allow: /services
+Allow: /text-page
+Disallow: /admin
+Crawl-delay: 3
+
+Host: https://mysite.ru
+Sitemap: https://mysite.ru/sitemap.xml

@@ -7,6 +7,7 @@ from employee.models import Seniority, DoctorTextField, Doctor
 
 class EmployeeAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Employee._meta.fields]
+    list_editable = ['full_name', 'position', 'is_displayed']
 
     class Meta:
         model = Employee
@@ -32,6 +33,7 @@ class ReviewInline(admin.TabularInline):
 
 class DoctorAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Doctor._meta.fields]
+    list_editable = ['name', 'position', 'is_active']
     inlines = [DoctorTextFieldInline, SeniorityInline, ReviewInline, MetaTagInline]
 
     class Meta:

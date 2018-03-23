@@ -1,14 +1,18 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
-from django.template import RequestContext
 
+from appointment.forms import AppointmentForm
 from department.models import Department
 from .models import *
 
 
 def faq(request, department_id=None):
+    appointment_form = AppointmentForm(request.POST or None)
+    if request.method == 'POST' and appointment_form.is_valid():
+        appointment_form.save()
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
     if department_id is None:
         department_id = Department.objects.all()[0].id
 

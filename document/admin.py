@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import *
-from .forms import *
+
+from document.models import Document
 
 
 class DocumentAdmin(admin.ModelAdmin):

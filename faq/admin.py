@@ -1,10 +1,11 @@
 from django.contrib import admin
-from .models import *
 from .forms import *
 
 
 class QuestionAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Question._meta.fields]
+    list_editable = ['curator', 'department', 'news']
+
 
     class Meta:
         model = Question

@@ -3,7 +3,8 @@ from .models import *
 
 
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = [field.name for field in Review._meta.fields]
+    list_display = ['customer_name', 'date', 'doctor', 'is_active']
+    list_editable = ['doctor', 'is_active']
 
     class Meta:
         model = Review

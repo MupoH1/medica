@@ -11,10 +11,10 @@ class Employee(models.Model):
         (ADMINISTRATION, 'Администратор'),
     )
 
-    full_name = models.CharField(max_length=64, blank=False, null=False, default=None)
-    position = models.CharField(max_length=2, choices=POSITION, default=ADMINISTRATION)
-    image = models.ImageField(upload_to='employees_images/', blank=False, null=False, default=None)
-    is_displayed = models.BooleanField(default=False)
+    full_name = models.CharField(max_length=64, blank=False, null=False, default=None, verbose_name='Имя')
+    position = models.CharField(max_length=2, choices=POSITION, default=ADMINISTRATION, verbose_name='Должность')
+    image = models.ImageField(upload_to='employees_images/', blank=False, null=False, default=None, verbose_name='Картинка')
+    is_displayed = models.BooleanField(default=False, verbose_name='Отображать')
 
     def __str__(self):
         return "%s " % self.full_name
@@ -25,10 +25,10 @@ class Employee(models.Model):
 
 
 class Doctor(models.Model):
-    name = models.CharField(max_length=64, blank=False, null=False, default=None)
-    position = models.CharField(max_length=64, blank=False, null=False, default=None)
-    image = models.ImageField(upload_to='doctors_images/', blank=False, null=True, default=None)
-    department = models.ForeignKey('department.Department', blank=False, null=True, default=None)
+    name = models.CharField(max_length=64, blank=False, null=False, default=None, verbose_name='Имя')
+    position = models.CharField(max_length=64, blank=False, null=False, default=None, verbose_name='Должность')
+    image = models.ImageField(upload_to='doctors_images/', blank=False, null=True, default=None, verbose_name='Картинка')
+    department = models.ForeignKey('department.Department', blank=False, null=True, default=None, verbose_name='Отделение')
     is_active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
@@ -49,10 +49,13 @@ class Doctor(models.Model):
     def get_seniority(self):
         return self.seniority_set.all()
 
+    def get_absolute_url(self):
+        return "/doctor-card/%s/" % self.id
+
 
 class DoctorTextField (models.Model):
-    doctor = models.ForeignKey(Doctor, blank=True, null=True, default=None)
-    description = models.TextField(blank=False, null=True, default=None)
+    doctor = models.ForeignKey(Doctor, blank=True, null=True, default=None, verbose_name='Врач')
+    description = models.TextField(blank=False, null=True, default=None, verbose_name='Описание заслуги')
     is_active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
@@ -66,7 +69,7 @@ class DoctorTextField (models.Model):
 
 
 class Seniority (models.Model):
-    seniority = models.CharField(max_length=256, blank=False, null=True, default=None)
+    seniority = models.CharField(max_length=256, blank=False, null=True, default=None, verbose_name='Описание')
     doctor = models.ForeignKey(Doctor, blank=True, null=True, default=None)
 
     def __str__(self):
