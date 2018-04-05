@@ -263,7 +263,7 @@ creature: 2017
                   <div class="news-block-bottom">
                     <div class="date">{{ news.date|date:"d.m.Y" }}</div>
                     <div class="more">
-                      <a href="text-page.html">Подробнее</a>
+                      <a href="{% url 'text_page' news.id %}">Подробнее</a>
                     </div>
                   </div>
                 </div>
@@ -280,7 +280,7 @@ creature: 2017
                   <div class="news-block-bottom">
                     <div class="date">{{ news.date|date:"d.m.Y" }}</div>
                     <div class="more">
-                      <a href="text-page.html">Подробнее</a>
+                      <a href="{% url 'text_page' news.id %}">Подробнее</a>
                     </div>
                   </div>
                 </div>
